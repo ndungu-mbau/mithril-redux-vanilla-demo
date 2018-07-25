@@ -2297,8 +2297,12 @@ _mithril2.default.mount(root, {
   },
   view: function view(_ref2) {
     var state = _ref2.state;
-    var __store = state.__store;
 
+    var _state$__store = state.__store,
+        __store = _state$__store === undefined ? {
+      todos: [],
+      visibilityFilter: 'SHOW_ALL'
+    } : _state$__store;
 
     return (0, _mithril2.default)("div.container", [(0, _mithril2.default)(_AddTodo2.default, { store: _store2.default, __store: __store }), (0, _mithril2.default)(_TodoList2.default, { store: _store2.default, __store: __store }), (0, _mithril2.default)(_FilterButtons2.default, { store: _store2.default, __store: __store })]);
   }
@@ -2332,7 +2336,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '39071' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '41217' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 

@@ -15,7 +15,10 @@ m.mount(root, {
     })
   },
   view({ state }) {
-    const { __store } = state
+    const { __store = {
+      todos: [],
+      visibilityFilter: 'SHOW_ALL'
+    } } = state
 
     return m("div.container", [
       m(AddTodo, { store, __store }),
