@@ -2299,10 +2299,7 @@ _mithril2.default.mount(root, {
     var state = _ref2.state;
 
     var _state$__store = state.__store,
-        __store = _state$__store === undefined ? {
-      todos: [],
-      visibilityFilter: 'SHOW_ALL'
-    } : _state$__store;
+        __store = _state$__store === undefined ? _store2.default.getState() : _state$__store;
 
     return (0, _mithril2.default)("div.container", [(0, _mithril2.default)(_AddTodo2.default, { store: _store2.default, __store: __store }), (0, _mithril2.default)(_TodoList2.default, { store: _store2.default, __store: __store }), (0, _mithril2.default)(_FilterButtons2.default, { store: _store2.default, __store: __store })]);
   }
