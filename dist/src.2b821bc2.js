@@ -103,7 +103,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   // Override the current require with this new one
   return newRequire;
-})({"node_modules/mithril/mithril.js":[function(require,module,exports) {
+})({13:[function(require,module,exports) {
 var global = arguments[3];
 ;(function() {
 "use strict"
@@ -1362,7 +1362,7 @@ m.vnode = Vnode
 if (typeof module !== "undefined") module["exports"] = m
 else window.m = m
 }());
-},{}],"node_modules/symbol-observable/es/ponyfill.js":[function(require,module,exports) {
+},{}],32:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1386,7 +1386,7 @@ function symbolObservablePonyfill(root) {
 
 	return result;
 };
-},{}],"node_modules/symbol-observable/es/index.js":[function(require,module,exports) {
+},{}],30:[function(require,module,exports) {
 var global = arguments[3];
 'use strict';
 
@@ -1417,7 +1417,7 @@ if (typeof self !== 'undefined') {
 
 var result = (0, _ponyfill2.default)(root);
 exports.default = result;
-},{"./ponyfill.js":"node_modules/symbol-observable/es/ponyfill.js"}],"node_modules/redux/es/redux.js":[function(require,module,exports) {
+},{"./ponyfill.js":32}],25:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -2022,7 +2022,7 @@ exports.bindActionCreators = bindActionCreators;
 exports.applyMiddleware = applyMiddleware;
 exports.compose = compose;
 exports.__DO_NOT_USE__ActionTypes = ActionTypes;
-},{"symbol-observable":"node_modules/symbol-observable/es/index.js"}],"src/store/actions/index.js":[function(require,module,exports) {
+},{"symbol-observable":30}],24:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -2058,7 +2058,7 @@ var setVisibilityFilter = exports.setVisibilityFilter = function setVisibilityFi
     filterName: filterName
   };
 };
-},{}],"src/store/reducer/index.js":[function(require,module,exports) {
+},{}],28:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -2106,7 +2106,7 @@ var todoApp = exports.todoApp = function todoApp() {
       return state;
   }
 };
-},{"../actions":"src/store/actions/index.js"}],"src/store/index.js":[function(require,module,exports) {
+},{"../actions":24}],20:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -2119,7 +2119,7 @@ var _reducer = require('./reducer');
 
 var store = (0, _redux.createStore)(_reducer.todoApp, _reducer.initialState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 exports.default = store;
-},{"redux":"node_modules/redux/es/redux.js","./reducer":"src/store/reducer/index.js"}],"src/components/FilterButtons.js":[function(require,module,exports) {
+},{"redux":25,"./reducer":28}],10:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -2170,7 +2170,7 @@ exports.default = {
     })]);
   }
 };
-},{"mithril":"node_modules/mithril/mithril.js","../store/actions":"src/store/actions/index.js"}],"src/components/TodoList.js":[function(require,module,exports) {
+},{"mithril":13,"../store/actions":24}],11:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -2220,7 +2220,7 @@ exports.default = {
     }));
   }
 };
-},{"mithril":"node_modules/mithril/mithril.js","../store/actions":"src/store/actions/index.js"}],"src/components/AddTodo.js":[function(require,module,exports) {
+},{"mithril":13,"../store/actions":24}],12:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -2245,20 +2245,21 @@ exports.default = {
     var state = _ref2.state,
         attrs = _ref2.attrs;
 
-    return (0, _mithril2.default)('.todo-form', [(0, _mithril2.default)('input[type=text][placeholder=Enter todo text]', {
+    return (0, _mithril2.default)('form.todo-form', {
+      onsubmit: function onsubmit(e) {
+        e.preventDefault();
+        attrs.store.dispatch((0, _actions.addTodo)(state.text));
+        state.text = '';
+      }
+    }, [(0, _mithril2.default)('input[type=text][placeholder=Enter todo text]', {
       oninput: _mithril2.default.withAttr('value', function (v) {
         return state.text = v;
       }),
       value: state.text
-    }), (0, _mithril2.default)('button', {
-      onclick: function onclick() {
-        attrs.store.dispatch((0, _actions.addTodo)(state.text));
-        state.text = '';
-      }
-    }, 'Add Todo')]);
+    }), (0, _mithril2.default)('button', 'Add Todo')]);
   }
 };
-},{"mithril":"node_modules/mithril/mithril.js","../store/actions":"src/store/actions/index.js"}],"src/index.js":[function(require,module,exports) {
+},{"mithril":13,"../store/actions":24}],6:[function(require,module,exports) {
 'use strict';
 
 var _mithril = require('mithril');
@@ -2304,7 +2305,7 @@ _mithril2.default.mount(root, {
     return (0, _mithril2.default)("div.container", [(0, _mithril2.default)(_AddTodo2.default, { store: _store2.default, __store: __store }), (0, _mithril2.default)(_TodoList2.default, { store: _store2.default, __store: __store }), (0, _mithril2.default)(_FilterButtons2.default, { store: _store2.default, __store: __store })]);
   }
 });
-},{"mithril":"node_modules/mithril/mithril.js","./store":"src/store/index.js","./components/FilterButtons":"src/components/FilterButtons.js","./components/TodoList":"src/components/TodoList.js","./components/AddTodo":"src/components/AddTodo.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"mithril":13,"./store":20,"./components/FilterButtons":10,"./components/TodoList":11,"./components/AddTodo":12}],34:[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 
@@ -2333,7 +2334,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '41217' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '41705' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
@@ -2410,7 +2411,7 @@ function getParents(bundle, id) {
     for (d in modules[k][1]) {
       dep = modules[k][1][d];
       if (dep === id || Array.isArray(dep) && dep[dep.length - 1] === id) {
-        parents.push(k);
+        parents.push(+k);
       }
     }
   }
@@ -2474,5 +2475,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.parcelRequire, id);
   });
 }
-},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","src/index.js"], null)
+},{}]},{},[34,6], null)
 //# sourceMappingURL=/src.2b821bc2.map
