@@ -8,13 +8,21 @@ import AddTodo from './components/AddTodo'
 const root = document.body
 
 m.mount(root, {
-  view() {
+  oninit({ state, attrs }) {
+    store.subscribe(() => {
+      state.__store = store.getState()
+      m.redraw()
+    })
+  },
+  view({ state }) {
+    const { __store = store.getState() } = state
+
     return m("div.container", [
-      m(AddTodo, { store }),
-      m(TodoList, { store}),
-      m(FilterButtons, { store })
+      m(AddTodo, { store, __store }),
+      m(TodoList, { store, __store }),
+      m(FilterButtons, { store, __store })
     ])
   }
 })
 
-store.subscribe(() => m.redraw())
+

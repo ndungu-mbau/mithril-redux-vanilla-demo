@@ -1,0 +1,16 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch localhost with sourcemaps",
+            "runtimeExecutable": "/bin/google-chrome-stable",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost:1234", //if your server works with a different port (like 8080) you need to set : "http://localhost:8080/my_project/",
+            "sourceMaps": true,
+            "webRoot": "${workspaceRoot}",
+            "port": 9222,
+            "userDataDir": "${workspaceRoot}/.vscode/chrome"
+        }
+    ]
+}
